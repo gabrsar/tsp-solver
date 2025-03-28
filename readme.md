@@ -25,6 +25,10 @@
 
 # Running
 
+## Docker:
+`docker build -t sfr3-tsp:v1 .`
+`docker run -it sfr3-tsp:v1`
+
 ## Running tests:
 
 `npm run tests`
