@@ -65,16 +65,15 @@ Stack:
 
 # Improvements & Next Step
 
-1. Refactor re-write 2-otp by hand :)
-2. Dockerfile for simpler execution and environment independence.
-3. Use some logger lib instead of console.log.
-4. Algorithms optimization with a profiler, searching for hotspots.
-5. Review grammar mistakes.
-6. File reading tests.
-7. Lint (Prettier) on commit.
+1. [ ] Refactor re-write 2-otp by hand :)
+2. [X] Dockerfile for simpler execution and environment independence.
+3. [ ] Use some logger lib instead of console.log.
+4. [ ] Algorithms optimization with a profiler, searching for hotspots.
+5. [ ] Review grammar mistakes.
+6. [ ] File reading tests.
+7. [ ] Lint (Prettier) on commit.
 
 ## Minor things I made that can pass unnoticed.
 1. Locked version of packages. It's very important to know when things change. I had many issues with dependencies of my packages changing and even patches giving a lot of trouble.
 2. Prettier :) No more unnecessary big diffs because each developer uses a coding different code-style 
 3. Factorial tests and safe limits. Is not much, but it was honest work.
-4. 
