@@ -18,25 +18,31 @@ async function main() {
   const distanceImprovementPct = (1 - twoOtpResult.bestDistance / nnResult.bestDistance) * 100;
   console.log('====================================================');
 
-  console.log(`Best route (NN+2-OTP):`, twoOtpResult.bestRoute.join(' -> '));
+  console.log(
+    `Best route (NN+2-OTP) for ${coordinates.length} destinations:`,
+    twoOtpResult.bestRoute.join(' -> '),
+  );
   console.log(`NearestNeighborTSP distance: ${nnResult.bestDistance.toFixed(2)}`);
   console.log(`2-Opt distance: ${twoOtpResult.bestDistance.toFixed(2)}`);
   console.log(
     `Improvement: ${distanceImprovement.toFixed(2)} (${distanceImprovementPct.toFixed(2)}%)`,
   );
 
+  console.log('====================================================');
+
   runBruteForce(coordinates);
 }
 
 function runBruteForce(coordinates: Point[]) {
+  const shortRoute = coordinates.slice(0, 12);
+
   console.log(
-    'Now, it will run the BruteForce Solver. Press ENTER to EXIT and y/Y to run the BruteForce.',
+    `Now, it will run the BruteForce Solver but only for ${shortRoute.length} destinations . Press ENTER to EXIT and y/Y to run the BruteForce.`,
   );
 
   process.stdin.resume();
   process.stdin.on('data', (key) => {
     if (key.toString() === 'y\n' || key.toString() === 'Y\n') {
-      const shortRoute = coordinates.slice(0, 12);
       console.log(
         `Running BruteForce just for fist ${shortRoute.length} coordinates:`,
         shortRoute.join(' - '),
