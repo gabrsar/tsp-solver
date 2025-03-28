@@ -1,4 +1,4 @@
-# SFR3 - Part 2 (Coding Exercise)
+# Part 2 (Coding Exercise)
 
 # Requirements
 
