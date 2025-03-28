@@ -31,7 +31,9 @@
 
 ## Running TSP solver:
 
-As required, change the file `delivery_points.txt` and then run: `npm start`
+Run `npm install` to install dependencies
+As required, change the file `delivery_points.txt` with your points and then run: `npm start`.
+Please, ensure if the file nas no empty line at the end.
 
 # Approach
 
@@ -43,7 +45,7 @@ I went deep into the TSP topic via Wikipedia — looking into solvers, strategie
 
     Exact solvers: give the optimal solution, but don’t scale past ~30–40 points.
 
-    Best-effort solvers: give a suboptimal solution, but can handle much larger inputs (~50–100 points).
+    Best-effort solvers: give a suboptimal solution, but can handle much larger sets.
 
 I started by implementing a trivial solution just to get the structure working, ran some tests, and had a bit of fun watching my machine struggle with 15 points.
 
@@ -52,6 +54,9 @@ Once everything was working and structured properly, I looked for a strategy I c
 What I found is that combining two simple strategies often yields better results than trying to implement something complex that wouldn’t be ready in time.
 
 So I went with a mix of Nearest Neighbours (known for poor results but decent speed) followed by a second pass using the 2-opt algorithm.
+
+*Altough I was not able to finish the 2-opt implementation by myself in time, I used chat-gpt to generate it and used it just to have a better result.*
+*Both NN and BruteForce implementation were made by myself*
 
 Since I wanted to be able to test different strategies, I built a generic system that supports multiple TSP Solvers, and the surrounding structure takes care of integrating them. That way it’s super easy to add new solvers later on.
 

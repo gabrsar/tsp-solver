@@ -16,11 +16,11 @@ describe('factorial function', () => {
         expect((0, factorial_1.default)(3)).toBe(6); // 3! = 3 * 2 * 1 = 6
     });
     it('should throw error for decimal inputs', () => {
-        expect(() => (0, factorial_1.default)(Math.PI)).toThrow("This method only supports integers.");
+        expect(() => (0, factorial_1.default)(Math.PI)).toThrow('This method only supports integers.');
     });
     it('it works for very big numbers, but respect JS Precision limits.', () => {
-        expect((0, factorial_1.default)(170)).toBe(7.257415615308004e+306);
-        expect(() => (0, factorial_1.default)(171)).toThrow("This operation will cause a numeric overflow.");
+        expect((0, factorial_1.default)(170)).toBe(7.257415615308004e306);
+        expect(() => (0, factorial_1.default)(171)).toThrow('This operation will cause a numeric overflow.');
     });
     it('should throw an error for negative numbers', () => {
         expect(() => (0, factorial_1.default)(-1)).toThrow();

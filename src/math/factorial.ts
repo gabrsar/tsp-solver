@@ -15,27 +15,27 @@
  */
 
 function factorial(n: number): number {
-    if (n < 0) {
-        throw new Error("This is getting complex. Please, use a positive value.")
-    }
+  if (n < 0) {
+    throw new Error('This is getting complex. Please, use a positive value.');
+  }
 
-    if (n <= 1) {
-        return 1;
-    }
+  if (n <= 1) {
+    return 1;
+  }
 
-    if (Math.ceil(n) !== n) {
-        throw new Error("This method only supports integers.")
-    }
+  if (Math.ceil(n) !== n) {
+    throw new Error('This method only supports integers.');
+  }
 
-    if (n > 170) {
-        throw new Error("This operation will cause a numeric overflow.")
-    }
+  if (n > 170) {
+    throw new Error('This operation will cause a numeric overflow.');
+  }
 
-    let total = 1;
-    for (let f = n; f > 0; f--) {
-        total *= f;
-    }
-    return total;
+  let total = 1;
+  for (let f = n; f > 0; f--) {
+    total *= f;
+  }
+  return total;
 }
 
 export default factorial;

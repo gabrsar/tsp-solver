@@ -1,11 +1,19 @@
-import {DistanceCalculator, Point} from "../geometry/points";
+import { DistanceCalculator, Point } from '../geometry/points';
+
+export interface TSPSolution {
+  bestRoute: Point[];
+  bestDistance: number;
+}
 
 export interface TravelingSalespersonProblemSolver {
-    /**
-     * @param destinations arrays of @Point
-     * @param distanceFormula is a @DistanceCalculator implementation used to compute distances.
-     *
-     * @return {bestRoute:Point[], bestDistance:number}
-     */
-    solve(destinations: Point[], distanceFormula: DistanceCalculator): { bestRoute: Point[], bestDistance: number }
+  /**
+   * @param destinations arrays of @Point
+   * @param distanceFormula is a @DistanceCalculator implementation used to compute distances.
+   *
+   * @return {bestRoute:Point[], bestDistance:number}
+   */
+  solve(
+    destinations: Point[],
+    distanceFormula: DistanceCalculator,
+  ): { bestRoute: Point[]; bestDistance: number };
 }

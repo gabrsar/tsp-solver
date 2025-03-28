@@ -17,16 +17,16 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 function factorial(n) {
     if (n < 0) {
-        throw new Error("This is getting complex. Please, use a positive value.");
+        throw new Error('This is getting complex. Please, use a positive value.');
     }
     if (n <= 1) {
         return 1;
     }
     if (Math.ceil(n) !== n) {
-        throw new Error("This method only supports integers.");
+        throw new Error('This method only supports integers.');
     }
     if (n > 170) {
-        throw new Error("This operation will cause a numeric overflow.");
+        throw new Error('This operation will cause a numeric overflow.');
     }
     let total = 1;
     for (let f = n; f > 0; f--) {
