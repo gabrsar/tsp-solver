@@ -1,7 +1,8 @@
 import { loadCoordinatesFromFile } from './io/coordinates-from-file';
 import { NearestNeighborTSP } from './traveling-salesman-problem/nearest-neighbors/nearest-neighbor-tsp';
-import { euclideanDistance } from './geometry/points';
+import { euclideanDistance, Point } from './geometry/points';
 import { TwoOptTSP } from './traveling-salesman-problem/n-otp/two-otp';
+import { BruteForceTSP } from './traveling-salesman-problem/brute-force/brute-force-tsp';
 
 async function main() {
   const inputFile = './delivery_points.txt';
@@ -15,6 +16,7 @@ async function main() {
 
   const distanceImprovement = nnResult.bestDistance - twoOtpResult.bestDistance;
   const distanceImprovementPct = (1 - twoOtpResult.bestDistance / nnResult.bestDistance) * 100;
+  console.log('====================================================');
 
   console.log(`Best route (NN+2-OTP):`, twoOtpResult.bestRoute.join(' -> '));
   console.log(`NearestNeighborTSP distance: ${nnResult.bestDistance.toFixed(2)}`);
@@ -22,8 +24,37 @@ async function main() {
   console.log(
     `Improvement: ${distanceImprovement.toFixed(2)} (${distanceImprovementPct.toFixed(2)}%)`,
   );
+
+  runBruteForce(coordinates);
+}
+
+function runBruteForce(coordinates: Point[]) {
+  console.log(
+    'Now, it will run the BruteForce Solver. Press ENTER to EXIT and y/Y to run the BruteForce.',
+  );
+
+  process.stdin.resume();
+  process.stdin.on('data', (key) => {
+    if (key.toString() === 'y\n' || key.toString() === 'Y\n') {
+      const shortRoute = coordinates.slice(0, 12);
+      console.log(
+        `Running BruteForce just for fist ${shortRoute.length} coordinates:`,
+        shortRoute.join(' - '),
+      );
+      const bruteForceSolver = new BruteForceTSP();
+
+      const bruteForceResult = bruteForceSolver.solve(shortRoute, euclideanDistance);
+      console.log(`Best route (Brute Force):`, bruteForceResult.bestRoute.join(' -> '));
+      console.log(`Best distance (Brute Force):`, bruteForceResult.bestDistance);
+
+      console.log('Hope you all had some fun reviewing this! Nice friday to you all! :)');
+    } else {
+      process.exit(0);
+    }
+  });
 }
 
 main().catch((error) => {
   console.error('Could not complete TSP', error);
+  process.exit(1);
 });

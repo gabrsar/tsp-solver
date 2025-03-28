@@ -5,14 +5,21 @@ import { generatePermutations } from './permutation';
 
 const MILESTONE_CHECK = 1_000_000;
 
+export interface Stoppable {
+  stop(): void;
+}
+
 /**
  * Just a bruteForce TSP solution that checks every single possibility for the best route.
  *
  * Processing Complexity: O(n!)
- * Memory Complexity: O(n) (generators to avoid memory exhaustion)
+ * Memory Complexity: O(n^2) due the distance map. Could be done with O(n) but would be even slower.
+ * As the practical limit of this algorithm is around n=10...15, it doesn't matter much space being O(n^2) or O(n)
+ *
+ * Although generators still avoid memory exhaustion due the O(n!) characteristic of permutations.
  *
  * Although it will take forever, it will be able to run if you have some patience,
- * but probably the thermal death of the universe will arrive earlier than the result.
+ * but probably the thermal death of the universe will arrive earlier than the result for n>20.
  */
 export class BruteForceTSP implements TravelingSalespersonProblemSolver {
   solve(destinations: Point[], distanceFormula: DistanceCalculator): TSPSolution {
@@ -22,7 +29,6 @@ export class BruteForceTSP implements TravelingSalespersonProblemSolver {
     let totalRoutes = factorial(destinations.length);
     let bestDistance = Number.MAX_VALUE;
     let bestRoute: Point[] = [];
-    console.log('DISTANCES MATRIX', distances);
     for (const permutation of generatePermutations(destinations)) {
       let currentDistance = 0;
       for (let i = 1; i < permutation.length; i++) {
@@ -42,6 +48,7 @@ export class BruteForceTSP implements TravelingSalespersonProblemSolver {
       routesChecked += 1;
       if ((routesChecked - 1) % MILESTONE_CHECK === 0) {
         const pct = ((routesChecked / totalRoutes) * 100).toFixed(10);
+        // Heath beat. Just so the user don't thing this is stuck or frozen. No. Its suffering.
         console.log(
           `Processing ${routesChecked}/${totalRoutes} possible routes: ${pct}%.`,
           `Best Distance: ${bestDistance}`,

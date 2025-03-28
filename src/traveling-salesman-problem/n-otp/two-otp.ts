@@ -5,15 +5,14 @@
  * I just fixed the imports.
  *
  * Prompt: Considering my project structure, implement an 2-OTP solution for TSP
+ *
+ * Ok. made some changes on it. You can get by checking diff with last commit.
  * */
-import { TravelingSalespersonProblemSolver } from '../traveling-salesmain-problem';
+import { TravelingSalespersonProblemSolver, TSPSolution } from '../traveling-salesmain-problem';
 import { DistanceCalculator, Point } from '../../geometry/points';
 
 export class TwoOptTSP implements TravelingSalespersonProblemSolver {
-  solve(
-    destinations: Point[],
-    distanceFormula: DistanceCalculator,
-  ): { bestRoute: Point[]; bestDistance: number } {
+  solve(destinations: Point[], distanceFormula: DistanceCalculator): TSPSolution {
     console.log('Running 2-OPT-TSP');
 
     if (destinations.length <= 2) {

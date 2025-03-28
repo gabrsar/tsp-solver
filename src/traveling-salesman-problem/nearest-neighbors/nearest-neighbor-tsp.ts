@@ -1,6 +1,21 @@
 import { DistanceCalculator, Point } from '../../geometry/points';
 import { TravelingSalespersonProblemSolver } from '../traveling-salesmain-problem';
 
+/**
+ * This solver is way simpler and performant, but usually suffer with locality maximums.
+ *
+ * Its processing complexity is O(n^3), but we can reduce to O(n^2) if se lock the starting point.
+ * The pre-computing of distances with the sorting is around O(n) * O(n log n) => O(n^2 * log n).
+ * so doesn't make things much worse as the solver itself is O(n^3).
+ *
+ * Maybe later a better approach on the search of visited nodes can reduce the processing complexity
+ * to the pre-computing, giving an expressive improvement for big sets.
+ *
+ * Its space complexity is O(n^2) as it has to compute a distance matrix (from every node to every node)
+ *
+ * This implementation was way more straight forward than the BruteForce.
+ * Shame on me for wasting so much time on that slow thing.
+ */
 export class NearestNeighborTSP implements TravelingSalespersonProblemSolver {
   private preComputeAllNearestNeighbors(
     destinations: Point[],

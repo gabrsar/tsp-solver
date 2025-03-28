@@ -44,7 +44,6 @@ Since brute-force has a processing complexity of O(n!) (and memory can get just 
 I went deep into the TSP topic via Wikipedia — looking into solvers, strategies, and theory. Basically, there are two options:
 
     Exact solvers: give the optimal solution, but don’t scale past ~30–40 points.
-
     Best-effort solvers: give a suboptimal solution, but can handle much larger sets.
 
 I started by implementing a trivial solution just to get the structure working, ran some tests, and had a bit of fun watching my machine struggle with 15 points.
@@ -55,7 +54,7 @@ What I found is that combining two simple strategies often yields better results
 
 So I went with a mix of Nearest Neighbours (known for poor results but decent speed) followed by a second pass using the 2-opt algorithm.
 
-*Altough I was not able to finish the 2-opt implementation by myself in time, I used chat-gpt to generate it and used it just to have a better result.*
+*Although I was not able to finish the 2-opt implementation by myself in time, I used chat-gpt to generate it and used it just to have a better result.*
 *Both NN and BruteForce implementation were made by myself*
 
 Since I wanted to be able to test different strategies, I built a generic system that supports multiple TSP Solvers, and the surrounding structure takes care of integrating them. That way it’s super easy to add new solvers later on.
@@ -63,3 +62,19 @@ Since I wanted to be able to test different strategies, I built a generic system
 Stack:
 
     TypeScript + Node.js — it’s what I’m most comfortable with, so I can tweak anything in real-time if needed.
+
+# Improvements & Next Step
+
+1. Refactor re-write 2-otp by hand :)
+2. Dockerfile for simpler execution and environment independence.
+3. Use some logger lib instead of console.log.
+4. Algorithms optimization with a profiler, searching for hotspots.
+5. Review grammar mistakes.
+6. File reading tests.
+7. Lint (Prettier) on commit.
+
+## Minor things I made that can pass unnoticed.
+1. Locked version of packages. It's very important to know when things change. I had many issues with dependencies of my packages changing and even patches giving a lot of trouble.
+2. Prettier :) No more unnecessary big diffs because each developer uses a coding different code-style 
+3. Factorial tests and safe limits. Is not much, but it was honest work.
+4. 
